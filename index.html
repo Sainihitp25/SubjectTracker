@@ -78,19 +78,18 @@
       <div class="form-group">
         <label for="subject">Subject:</label>
         <select id="subject" name="subject">
-          <option value="">Select Subject</option>
-          <option value="Math">Math</option>
-          <option value="Science">Science</option>
-          <option value="English">English</option>
-        </select>
+          <option value="" disabled hidden>Select Subject</option>
+          <option value="Default" selected>Default</option>
+          <option value="AddNew">Add New</option>
+
+          </select>
       </div>
       <div class="form-group">
         <label for="topic">Topic:</label>
-        <select id="topic" name="topic">
-          <option value="">Select Topic</option>
-          <option value="Algebra">Algebra</option>
-          <option value="Geometry">Geometry</option>
-          <option value="Physics">Physics</option>
+        
+        <input type="text" id="topic" name="topic"><br><br>
+        
+          
         </select>
         
         <div class="submit-btn">
