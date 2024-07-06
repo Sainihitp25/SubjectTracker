@@ -11,21 +11,27 @@
       justify-content: center;
       align-items: center;
       min-height: 100vh;
+
+
     }
 
     .container {
       background-color: #ffffff;
-      padding: 30px;
+      padding: 80px;
       border-radius: 7px;
       box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
       text-align: center;
+      width: 315px;
+
     }
 
     .container h2 {
       margin-bottom: 40px;
+
       font-size: 24px;
       color: #2098C8;
       text-shadow: #0F6486 ;
+
     }
 
     .form-group {
@@ -55,8 +61,7 @@
       border-radius: 3px;
       cursor: pointer;
       font-size: 16px;
-      margin-right: 30px;
-      margin-left: 30px;
+
     }
 
     .submit-btn{
@@ -64,6 +69,18 @@
       justify-content: center;
       align-items: center;
       margin-top: 20px;
+      margin-right: 30px;
+      margin-left: 30px;
+    }
+
+    .addbutton{
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-top: -37px;
+      margin-right: 30px;
+      margin-left: 330px;
+
     }
 
     button:hover {
@@ -71,37 +88,42 @@
     }
   </style>
 </head>
+
+
 <body>
-  <div class="container">
-    <h2>PRODUCTIVITY TRACKER</h2>
-    <form>
-      <div class="form-group">
-        <label for="subject">Subject:</label>
-        <select id="subject" name="subject">
-          <option value="">Select Subject</option>
-          <option value="Math">Math</option>
-          <option value="Science">Science</option>
-          <option value="English">English</option>
-        </select>
-      </div>
-      <div class="form-group">
-        <label for="topic">Topic:</label>
-        <select id="topic" name="topic">
-          <option value="">Select Topic</option>
-          <option value="Algebra">Algebra</option>
-          <option value="Geometry">Geometry</option>
-          <option value="Physics">Physics</option>
-        </select>
-        
-        <div class="submit-btn">
-          <button type="submit">SUBMIT</button>
-        </div>
-      </div>
+<div class="container">
+  <h2>PRODUCTIVITY TRACKER</h2>
+  <form>
+    <div class="form-group">
+      <label for="subject">Subject:</label>
+      <select id="subject" name="subject">
+        <option value="" disabled hidden>Select Subject</option>
+        <option value="Default" selected>Default</option>
+        <option value="AddNew">Add New</option>
 
-      <!-- <button type="submit">LOGIN</button>
-      <button type="submit">SIGNUP</button> -->
 
-    </form>
-  </div>
+
+      </select>
+
+      <button class="addbutton"> + </button>
+    </div>
+    <div class="form-group">
+      <label for="topic">Topic:</label>
+
+      <input type="text" id="topic" name="topic" placeholder="Enter the Topic" ><br><br>
+
+
+      </select>
+
+      <div class="submit-btn">
+        <button type="submit">SUBMIT</button>
+      </div>
+    </div>
+
+    <!-- <button type="submit">LOGIN</button>
+    <button type="submit">SIGNUP</button> -->
+
+  </form>
+</div>
 </body>
 </html>
