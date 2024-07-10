@@ -3,6 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <title>Productivity Tracker</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://cdn.jsdelivr.net/npm/axios@0.21.1/dist/axios.min.js"></script>
   <style>
     body {
       font-family: sans-serif;
@@ -11,8 +13,6 @@
       justify-content: center;
       align-items: center;
       min-height: 100vh;
-
-
     }
 
     .container {
@@ -22,16 +22,13 @@
       box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
       text-align: center;
       width: 315px;
-
     }
 
     .container h2 {
       margin-bottom: 40px;
-
       font-size: 24px;
       color: #2098C8;
-      text-shadow: #0F6486 ;
-
+      text-shadow: #0F6486;
     }
 
     .form-group {
@@ -57,14 +54,13 @@
       background-color: #4CAF50;
       color: white;
       padding: 8px 10px;
-      border: navajowhite;
+      border: none;
       border-radius: 3px;
       cursor: pointer;
       font-size: 16px;
-
     }
 
-    .submit-btn{
+    .submit-btn {
       display: flex;
       justify-content: center;
       align-items: center;
@@ -73,14 +69,13 @@
       margin-left: 30px;
     }
 
-    .addbutton{
+    .addbutton {
       display: flex;
       justify-content: center;
       align-items: center;
       margin-top: -37px;
       margin-right: 30px;
       margin-left: 330px;
-
     }
 
     button:hover {
@@ -89,41 +84,69 @@
   </style>
 </head>
 
-
 <body>
 <div class="container">
   <h2>PRODUCTIVITY TRACKER</h2>
-  <form>
+  <form id="productivity-form">
     <div class="form-group">
       <label for="subject">Subject:</label>
       <select id="subject" name="subject">
         <option value="" disabled hidden>Select Subject</option>
-        <option value="Default" selected>Default</option>
+        <option value="Default" selected>Default...</option>
         <option value="AddNew">Add New</option>
-
-
-
       </select>
-
-      <button class="addbutton"> + </button>
+      <button type="button" class="addbutton"> + </button>
     </div>
     <div class="form-group">
       <label for="topic">Topic:</label>
-
-      <input type="text" id="topic" name="topic" placeholder="Enter the Topic" ><br><br>
-
-
-      </select>
-
-      <div class="submit-btn">
-        <button type="submit">SUBMIT</button>
-      </div>
+      <input type="text" id="topic" name="topic" placeholder="Enter the Topic"><br><br>
     </div>
-
-    <!-- <button type="submit">LOGIN</button>
-    <button type="submit">SIGNUP</button> -->
-
+    <div class="submit-btn">
+      <button type="submit">SUBMIT</button>
+    </div>
   </form>
 </div>
+
+<script>
+  document.getElementById('productivity-form').addEventListener('submit', function(event) {
+    event.preventDefault(); // Prevent the default form submission
+
+    const subject = document.getElementById('subject').value;
+    const topic = document.getElementById('topic').value;
+
+    console.log("subject is "+subject+" topic is "+topic);
+
+    // Send the form data using Axios
+    axios.post('http://localhost:9092/subject', {
+      Subject: subject,
+      Topic: topic
+    })
+    .then(function(response) {
+      console.log('Form submitted successfully:', response.data);
+      // Handle success (e.g., show a success message, clear the form, etc.)
+    })
+    .catch(function(error) {
+      console.error('Error submitting form:', error);
+      // Handle error (e.g., show an error message)
+    });
+  });
+
+  document.getElementById('subject').addEventListener('change', function() {
+    const subject = this.value;
+    console.log('Subject changed to:', subject);
+    // Add any additional logic you want to handle when the subject changes
+  });
+
+  document.getElementById('topic').addEventListener('input', function() {
+    const topic = this.value;
+    console.log('Topic input:', topic);
+    // Add any additional logic you want to handle when the topic input changes
+  });
+
+  document.querySelector('.addbutton').addEventListener('click', function() {
+    console.log('Add button clicked');
+    // Add logic for the add button click event
+  });
+</script>
 </body>
 </html>
