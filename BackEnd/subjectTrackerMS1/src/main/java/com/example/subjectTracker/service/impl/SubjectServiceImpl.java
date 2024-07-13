@@ -7,8 +7,6 @@ import com.example.subjectTracker.service.SubjectService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.sql.Timestamp;
-import java.time.LocalDateTime;
 import java.util.List;
 
 @Service
@@ -17,14 +15,17 @@ public class SubjectServiceImpl implements SubjectService {
     @Autowired
     private SubjectRepository subjectRepository;
 
+
+
     @Override
     public List<SubjectTracker> getAllSubjects() {
         return subjectRepository.findAll();
     }
 
+
     @Override
     public SubjectTracker saveSubjectData(SubjectTracker subjectTracker) {
-        return subjectRepository.save(subjectTracker);
+       return subjectRepository.save(subjectTracker);
     }
 
     @Override
