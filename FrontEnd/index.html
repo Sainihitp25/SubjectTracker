@@ -1,152 +1,69 @@
 <!DOCTYPE html>
 <html>
+
 <head>
   <meta charset="UTF-8">
   <title>Productivity Tracker</title>
   <link rel="stylesheet" href="style.css">
   <script src="https://cdn.jsdelivr.net/npm/axios@0.21.1/dist/axios.min.js"></script>
-  <style>
-    body {
-      font-family: sans-serif;
-      background-color: #f0f0f0;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      min-height: 100vh;
-    }
-
-    .container {
-      background-color: #ffffff;
-      padding: 80px;
-      border-radius: 7px;
-      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-      text-align: center;
-      width: 315px;
-    }
-
-    .container h2 {
-      margin-bottom: 40px;
-      font-size: 24px;
-      color: #2098C8;
-      text-shadow: #0F6486;
-    }
-
-    .form-group {
-      margin-bottom: 20px;
-    }
-
-    .form-group label {
-      display: block;
-      text-align: left;
-      margin-bottom: 5px;
-    }
-
-    .form-group input[type="text"],
-    .form-group select {
-      width: 100%;
-      padding: 10px;
-      border: 1px solid #ccc;
-      border-radius: 3px;
-      box-sizing: border-box;
-    }
-
-    button {
-      background-color: #4CAF50;
-      color: white;
-      padding: 8px 10px;
-      border: none;
-      border-radius: 3px;
-      cursor: pointer;
-      font-size: 16px;
-    }
-
-    .submit-btn {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      margin-top: 20px;
-      margin-right: 30px;
-      margin-left: 30px;
-    }
-
-    .addbutton {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      margin-top: -37px;
-      margin-right: 30px;
-      margin-left: 330px;
-    }
-
-    button:hover {
-      background-color: #45a049;
-    }
-  </style>
 </head>
 
 <body>
-<div class="container">
-  <h2>PRODUCTIVITY TRACKER</h2>
-  <form id="productivity-form">
-    <div class="form-group">
-      <label for="subject">Subject:</label>
-      
+  <div class="container">
+    <h2>PRODUCTIVITY TRACKER</h2>
+    <form id="productivity-form">
+      <div class="form-group">
+        <label for="subject">Subject:</label>
         <input type="text" id="subject" name="topic" placeholder="Enter the Subject"><br><br>
-        
-      </select>
-     
-    </div>
-    <div class="form-group">
-      <label for="topic">Topic:</label>
-      <input type="text" id="topic" name="topic" placeholder="Enter the Topic"><br><br>
-    </div>
-    <div class="submit-btn">
-      <button type="submit">SUBMIT</button>
-    </div>
-  </form>
-</div>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="topic">Topic:</label>
+        <input type="text" id="topic" name="topic" placeholder="Enter the Topic"><br><br>
+      </div>
+      <div class="submit-btn">
+        <button type="submit">submit</button>
+      </div>
+    </form>
+  </div>
 
-<script>
-  document.getElementById('productivity-form').addEventListener('submit', function(event) {
-    event.preventDefault(); // Prevent the default form submission
+  <script>
+    document.getElementById('productivity-form').addEventListener('submit', function (event) {
+      event.preventDefault(); // Prevent the default form submission
 
-    const subject = document.getElementById('subject').value;
-    const topic = document.getElementById('topic').value;
+      const subject = document.getElementById('subject').value;
+      const topic = document.getElementById('topic').value;
 
-    console.log("subject is "+subject+" topic is "+topic);
+      console.log("subject is " + subject + " topic is " + topic);
 
-    // Send the form data using Axios
-    axios.post('http://localhost:9092/subject', {
-      Subject: subject,
-      Topic: topic
-    })
-    .then(function(response) {
-      console.log('Form submitted successfully:', response.data);
-      // Handle success (e.g., show a success message, clear the form, etc.)
-    })
-    .catch(function(error) {
-      console.error('Error submitting form:', error);
-      // Handle error (e.g., show an error message)
+      // Send the form data using Axios
+      axios.post('http://localhost:9092/subject', {
+        Subject: subject,
+        Topic: topic
+      })
+        .then(function (response) {
+          console.log('Form submitted successfully:', response.data);
+          // Handle success (e.g., show a success message, clear the form, etc.)
+        })
+        .catch(function (error) {
+          console.error('Error submitting form:', error);
+          // Handle error (e.g., show an error message)
+        });
     });
-  });
 
 
-  document.getElementById('subject').addEventListener('change', function() {
-    const subject = this.value;
-    console.log('Subject changed to:', subject);
-    // Add any additional logic you want to handle when the subject changes
-  });
+    document.getElementById('subject').addEventListener('change', function () {
+      const subject = this.value;
+      console.log('Subject changed to:', subject);
+      // Add any additional logic you want to handle when the subject changes
+    });
 
-  document.getElementById('topic').addEventListener('input', function() {
-    const topic = this.value;
-    console.log('Topic input:', topic);
-    // Add any additional logic you want to handle when the topic input changes
-  });
-
-  document.querySelector('.addbutton').addEventListener('click', function() {
-    console.log('Add button clicked');
-    // Add logic for the add button click event
-  });
-</script>
+    document.getElementById('topic').addEventListener('change', function () {
+      const topic = this.value;
+      console.log('Topic input:', topic);
+      // Add any additional logic you want to handle when the topic input changes
+    });
+  </script>
 </body>
+
 </html>
