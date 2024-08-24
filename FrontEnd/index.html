@@ -37,9 +37,9 @@
       console.log("subject is " + subject + " topic is " + topic);
 
       // Send the form data using Axios
-      axios.post('http://localhost:9092/subject', {
-        Subject: subject,
-        Topic: topic
+      axios.post('http://localhost:9092/createOrUpdateSubjectAndTopic', {
+        subject: subject,
+        topic: topic
       })
         .then(function (response) {
           console.log('Form submitted successfully:', response.data);
@@ -67,3 +67,6 @@
 </body>
 
 </html>
+
+<!-- create a subject dropdown for list of subjects we have and create a field others
+after clicking on others add a box entering the subject field, same for topic -->

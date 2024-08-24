@@ -1,8 +1,11 @@
 package com.example.subjectTracker.entity;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.*;
+import org.hibernate.annotations.CreationTimestamp;
+
+import java.sql.Timestamp;
 
 @Entity
 @AllArgsConstructor
@@ -17,16 +20,19 @@ public class Topic {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer topicId;
 
-    @JsonProperty("TopicName")
     @Column(name = "topicName")
     private String topicName;
 
-    @JsonProperty("InputOverview")
     @Column(name = "inputOverview")
     private String inputOverview;
 
-    @JoinColumn(name = "subjectId")
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "subjectId", nullable = false)
+    @JsonBackReference // Prevent infinite recursion from the topic side
     private SubjectTracker subjectTracker;
+
+    @CreationTimestamp
+    @Column(name = "timestamp")
+    private Timestamp createdTimeStamp;
 
 }

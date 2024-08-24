@@ -11,7 +11,6 @@ import java.util.List;
 @Repository
 public interface TopicRepository extends JpaRepository<Topic,Integer> {
 
-//    @Query("select t from Topic t where t.subjectId = :subjectId")
-//    List<Topic> findBysubjectId(@Param("subjectId") Integer subjectId);
-
+    @Query("SELECT t FROM Topic t WHERE t.subjectTracker.subjectId = :subjectId")
+    List<Topic> findBySubjectId(@Param("subjectId") Integer subjectId);
 }
