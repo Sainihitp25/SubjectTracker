@@ -21,8 +21,8 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
-@WebMvcTest(SubjectFirstController.class)
-public class SubjectFirstControllerTest {
+@WebMvcTest(SubjectController.class)
+public class SubjectControllerTest {
 
     @Autowired
     private MockMvc mockMvc;

@@ -1,12 +1,11 @@
 package com.example.subjectTracker.entity;
 
 
-import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.*;
-import org.hibernate.annotations.CreationTimestamp;
 
-import java.sql.Timestamp;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -22,18 +21,15 @@ public class SubjectTracker {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer subjectId;
 
-    @JsonProperty("Subject")
     @Column(name = "subject")
     private String subjectName;
 
-    @JsonProperty("Topic")
-    @Column(name = "topic")
-    private String topicName;
+    @OneToMany(mappedBy = "subjectTracker", cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
+    @JsonManagedReference // Manage the relationship from the subject side
+    private List<Topic> topics = new ArrayList<>();
 
-    @OneToMany(mappedBy = "subjectTracker", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private List<Topic> Topics;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id")
+    private User user;
 
-    @CreationTimestamp
-    @Column(name = "timestamp")
-    private Timestamp createdTimeStamp;
 }

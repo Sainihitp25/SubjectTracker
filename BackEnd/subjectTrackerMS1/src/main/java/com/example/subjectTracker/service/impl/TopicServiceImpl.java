@@ -1,6 +1,5 @@
 package com.example.subjectTracker.service.impl;
 
-import com.example.subjectTracker.entity.SubjectTracker;
 import com.example.subjectTracker.entity.Topic;
 import com.example.subjectTracker.exception.ResourceNotFoundException;
 import com.example.subjectTracker.repository.SubjectRepository;
@@ -22,19 +21,11 @@ public class TopicServiceImpl implements TopicService {
 
 
     @Override
-    public Topic saveTopic(Topic topic , Integer subjectId) {
-        if (subjectRepository.existsById(subjectId))
-        {
-            SubjectTracker subjectTracker = subjectRepository.findById(subjectId).orElseThrow(
-                    () -> new ResourceNotFoundException("nothing found for id"));
-            topic.setSubjectTracker(subjectTracker);
+    public Topic saveTopic(Topic topic) {
             return topicRepository.save(topic);
-        }
-        else
-        {
-            throw new ResourceNotFoundException("nothing found for id");
-        }
+
     }
+
     public List<Topic> getAllTopicsBysubjectId(Integer subjectId) {
 
         if (subjectRepository.existsById(subjectId))
@@ -52,4 +43,5 @@ public class TopicServiceImpl implements TopicService {
     public Topic getTopicById(Integer topicId) {
         return topicRepository.findById(topicId).orElse(null);
     }
+
 }
