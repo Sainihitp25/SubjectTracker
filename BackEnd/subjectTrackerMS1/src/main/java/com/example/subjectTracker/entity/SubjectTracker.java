@@ -7,6 +7,7 @@ import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 
 import java.sql.Timestamp;
+import java.util.List;
 
 @Entity
 @AllArgsConstructor
@@ -25,12 +26,12 @@ public class SubjectTracker {
     @Column(name = "subject")
     private String subjectName;
 
-//    @JsonProperty("Topic")
-//    @Column(name = "topic")
-//    private String topicName;
+    @JsonProperty("Topic")
+    @Column(name = "topic")
+    private String topicName;
 
-//    @OneToMany(mappedBy = "subjectTracker", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-//    private List<Topic> Topics;
+    @OneToMany(mappedBy = "subjectTracker", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<Topic> Topics;
 
     @CreationTimestamp
     @Column(name = "timestamp")
